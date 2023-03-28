@@ -3,6 +3,14 @@
   padding: 0;
   margin: 0;
 }
+
+:root {
+  --primary-color: #f5f3f6;
+  --secondary-color: rgb(0, 21, 41);
+  --text-blue: #0071bd;
+  --text-grey: #afaeaf;
+}
 .main_body {
   display: flex;
+  background-color: var(--primary-color);
 }

@@ -1,0 +1,8 @@
+.news_card {
+  padding: 2em;
+  background-color: white;
+  width: 30em;
+}
+.news_card_head {
+  display: flex;
+}

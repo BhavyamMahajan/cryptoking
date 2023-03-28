@@ -1,0 +1,8 @@
+.crypto_page {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 2em;
+}

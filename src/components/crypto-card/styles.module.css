@@ -1,0 +1,25 @@
+.card {
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  width: 15em;
+}
+.card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.card_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 1em;
+  padding: 1.5em;
+}
+.card_desc {
+  padding: 1.5em;
+  line-height: 2em;
+}
+.card_head p {
+  font-weight: 600;
+  font-size: 1.2em;
+}

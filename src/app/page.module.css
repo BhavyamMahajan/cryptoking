@@ -1,0 +1,45 @@
+.main {
+  padding: 2em;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+.main h2 {
+  font-weight: 600;
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1em;
+}
+.stats_row {
+  min-width: 50%;
+}
+.title {
+  color: var(--text-grey);
+}
+.value {
+  font-size: 1.5em;
+}
+.ten_cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.curr_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.curr_heading a {
+  text-decoration: none;
+  color: var(--text-blue);
+  font-size: 1.2em;
+}
