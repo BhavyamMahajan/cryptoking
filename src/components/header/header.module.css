@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   gap: 3em;
-  padding: 2em 0 0 2em;
+  padding: 2em;
   position: sticky;
   top: 0;
   height: 100vh;
-  min-width: 19em;
+  width: 18em;
 }
 .logo {
   display: flex;
@@ -36,6 +36,9 @@
 .nav_items div a {
   color: #afaeaf;
   text-decoration: none;
+}
+.nav_item_active{
+  background-color: var(--text-blue);
 }
 .icons {
   filter: invert(79%) sepia(0%) saturate(0%) hue-rotate(98deg) brightness(91%)

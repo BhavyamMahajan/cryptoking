@@ -46,7 +46,7 @@ const getNews = async () => {
 export default async function Home() {
   const cryptoData = await getData();
   const newsData = await getNews();
-  console.log(newsData);
+
   return (
     <div className={styles.main}>
       <div className={styles.rows}>
@@ -92,7 +92,7 @@ export default async function Home() {
         <div className={styles.ten_cards}>
           {cryptoData.data.coins.map(
             (ele: CoinDetail, index: any) =>
-              index < 10 && <CryptoCard data={ele} />
+              index < 10 && <CryptoCard key={ele.uuid} data={ele} />
           )}
         </div>
       </div>
@@ -101,9 +101,9 @@ export default async function Home() {
           <h2>Latest Crypto News</h2>
           <Link href="/news">Show More</Link>
         </div>
-        <div>
-          {newsData.value.map((ele: any) => (
-            <NewsCard data={ele} />
+        <div className={styles.news_card}>
+          {newsData.value.map((ele: any,id:number) => (
+            <NewsCard key={"card"+id} data={ele} />
           ))}
         </div>
       </div>

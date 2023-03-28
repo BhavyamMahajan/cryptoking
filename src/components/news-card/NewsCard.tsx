@@ -19,20 +19,25 @@ export default function NewsCard({ data }: { data: any }) {
         />
       </div>
       <p>
-        {data.description > 100
+        {data.description.length > 100
           ? `${data.description.substring(0, 100)}...`
           : data.description}
+          
       </p>
-      <div className={styles.new_card_footer}>
+      <div className={styles.news_card_footer}>
+        <div className={styles.news_provider}>
+
         {data.provider[0]?.image?.thumbnail.contentUrl && (
           <Image
-            src={data.provider[0].image.thumbnail.contentUrl}
-            alt="logo"
-            width={100}
-            height={100}
+          src={data.provider[0].image.thumbnail.contentUrl}
+          alt="logo"
+          width={30}
+          height={30}
+          style={{borderRadius:"100%"}}
           />
-        )}
+          )}
         <p>{data.provider[0].name}</p>
+          </div>
         <p>{moment(data.datePublished).startOf("seconds").fromNow()}</p>
       </div>
     </Link>

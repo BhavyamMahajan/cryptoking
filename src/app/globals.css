@@ -9,6 +9,7 @@
   --secondary-color: rgb(0, 21, 41);
   --text-blue: #0071bd;
   --text-grey: #afaeaf;
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .main_body {
   display: flex;

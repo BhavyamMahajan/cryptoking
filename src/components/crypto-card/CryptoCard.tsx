@@ -14,7 +14,7 @@ export default function CryptoCard({ data }: { data: CoinDetail }) {
       <div className={styles.card_desc}>
         <p>Price: {parseFloat(data.price).toFixed(2)} USD</p>
         <p>Market Cap: {millify(data.marketCap)}</p>
-        <p>Daily Change: {millify(data.change)}</p>
+        <p>Daily Change: {millify(data.change)}%</p>
       </div>
     </Link>
   );

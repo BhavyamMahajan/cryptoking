@@ -1,8 +1,30 @@
 .news_card {
   padding: 2em;
   background-color: white;
-  width: 30em;
+  width: 49%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: space-between;
+}
+.news_card:hover{
+  box-shadow: var(--box-shadow);
 }
 .news_card_head {
   display: flex;
+  font-weight: 600;
+  gap: 0.5em;
+}
+.news_card_footer{
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+}
+
+.news_provider{
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
