@@ -1,8 +1,13 @@
-.main{
-    width: 80%;
-    margin: 0 auto;
-    padding: 2em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
+.main {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
 }
