@@ -6,10 +6,10 @@ import { CoinDetail } from "@/types/card";
 import { useEffect, useState } from "react";
 export const revalidate = 0;
 
-const getData = async () => {
+const getData = async (newsCategory: string) => {
   const newsData = await axios({
     method: "GET",
-    url: `https://bing-news-search1.p.rapidapi.com/news/search?q=Cryptocurrency&safeSearch=Off&textFormat=Raw&freshness=Day&count=100`,
+    url: `https://bing-news-search1.p.rapidapi.com/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day&count=100`,
     headers: {
       "X-BingApis-SDK": "true",
       "X-RapidAPI-Key": "568cc82003msh93b8dcaea65891bp133b39jsn1c6b116a2bb6",
@@ -44,29 +44,33 @@ const getCoins = async () => {
 export default function page() {
   const [newsData, setNewsData] = useState<any>();
   const [coins, setCoins] = useState<any>();
+  const [newsCategory, setNewsCategory] = useState<string>("Cyrptocurrency");
 
   useEffect(() => {
     async function callApi() {
-      const newsData = await getData();
+      const newsData = await getData(newsCategory);
       const coins = await getCoins();
       setNewsData(newsData);
       setCoins(coins);
     }
     callApi();
-  }, []);
+  }, [newsCategory]);
 
   return (
     <div className={styles.main}>
       <select
-        placeholder="select"
-        onChange={(e) => console.log(e.target.value)}
+        className={styles.drop_down}
+        defaultValue="Select a crypto"
+        onChange={(e) => setNewsCategory(e.target.value)}
       >
         <option value="Select a crypto" disabled>
           Select a crypto
         </option>
         <option value="Cryptocurrency">Cryptocurrency</option>
         {coins?.data.coins.map((ele: CoinDetail) => (
-          <option value={ele.name}>{ele.name}</option>
+          <option key={ele.rank} value={ele.name}>
+            {ele.name}
+          </option>
         ))}
       </select>
       <div className={styles.cards}>

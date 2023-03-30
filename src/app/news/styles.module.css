@@ -11,3 +11,13 @@
   flex-wrap: wrap;
   gap: 1em;
 }
+.drop_down {
+  align-self: flex-start;
+  padding: 0.5em;
+  border-radius: 0.2em;
+}
+.drop_down:focus {
+  outline: none;
+  border-color: var(--text-blue);
+  box-shadow: 0 0 2px var(--text-blue);
+}

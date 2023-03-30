@@ -3,7 +3,16 @@
   padding: 0;
   margin: 0;
 }
-
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: 2em;
+}
+::-webkit-scrollbar-track {
+  margin-block: 0.5em;
+}
 :root {
   --primary-color: #f5f3f6;
   --secondary-color: rgb(0, 21, 41);
