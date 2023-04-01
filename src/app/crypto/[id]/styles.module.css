@@ -2,6 +2,9 @@
   width: 80%;
   margin: 0 auto;
   padding: 2em 4em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 .main h2 {
   font-weight: 600;
@@ -17,6 +20,7 @@
   align-self: flex-start;
   padding: 0.5em;
   border-radius: 0.2em;
+  min-width: 8em;
 }
 .drop_down:focus {
   outline: none;
@@ -25,12 +29,11 @@
 }
 .stats_container {
   display: flex;
-  gap: 2em;
+  gap: 10em;
 }
 .stats_table {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
 }
 .stats {
   width: 50%;
@@ -45,9 +48,20 @@
 .stats_row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5em;
   padding: 1em;
   border-bottom: 0.1em solid var(--text-grey);
+}
+.coinLinks{
+  font-weight: 500;
+}
+.coinLinks a{
+text-decoration: none;
+color: var(--text-blue);
+}
+.text_bold{
+  font-weight: 700;
 }
 .stats_row:hover {
   background-color: white;
@@ -57,4 +71,5 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
+  opacity: 0.9;
 }

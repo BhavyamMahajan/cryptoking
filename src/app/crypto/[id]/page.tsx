@@ -9,6 +9,7 @@ import millify from "millify";
 import Image from "next/image";
 import markets from "public/icons/charts.svg";
 import exc from "public/icons/exchange.svg";
+import Link from "next/link";
 
 export const revalidate = 0;
 const getData = async (id: string) => {
@@ -33,11 +34,34 @@ const getData = async (id: string) => {
   return coin.data as any;
 };
 
+const getHistory = async ({id,timePeriod}:{id:string,timePeriod: string}) => {
+  const coin = await axios({
+    method: "GET",
+    url: `https://coinranking1.p.rapidapi.com/coin/${id}/history/${timePeriod}`,
+    params: {
+      referenceCurrencyUuid: "yhjMzLPhuIDl",
+      timePeriod: "24h",
+      "tiers[0]": "1",
+      orderBy: "marketCap",
+      orderDirection: "desc",
+      limit: "50",
+      offset: "0",
+    },
+
+    headers: {
+      "X-RapidAPI-Key": "568cc82003msh93b8dcaea65891bp133b39jsn1c6b116a2bb6",
+      "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
+    },
+  });
+  return coin.data as any;
+};
+
 export default function page({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const [coinDetail, setCoinDetail] = useState<any>();
-  const [tiimePeriod, setTimePeriod] = useState<string>();
+  const [timePeriod, setTimePeriod] = useState<string>("7d");
+  const [coinHistory, setCoinHistory] = useState<any>();
   const time = ["3h", "24h", "7d", "3m", "30d", "1y", "3y", "5y"];
   const stats = [
     {
@@ -80,12 +104,12 @@ export default function page({ params }: { params: { id: string } }) {
     },
     {
       title: "Total Supply",
-      value: `$ ${millify(coinDetail?.supply.total)}`,
+      value: `$${millify(coinDetail?.supply.total)}`,
       icon: exc,
     },
     {
       title: "Circulating Supply",
-      value: `$ ${millify(coinDetail?.supply.circulating)}`,
+      value: `$${millify(coinDetail?.supply.circulating)}`,
       icon: exc,
     },
   ];
@@ -94,11 +118,14 @@ export default function page({ params }: { params: { id: string } }) {
     console.log("first+ " + id);
     async function callApi() {
       const coinDetail = await getData(id);
+      // const coinHistory = await getHistory({id,timePeriod})
       setCoinDetail(coinDetail.data.coin);
+      setCoinHistory(coinHistory);
     }
     callApi();
-  }, []);
-  console.log(coinDetail);
+  }, [timePeriod]);
+  console.log(coinHistory);
+
   return (
     <div className={styles.main}>
       <div className={styles.page_head}>
@@ -138,7 +165,9 @@ export default function page({ params }: { params: { id: string } }) {
                   />
                   <p>{ele.title}</p>
                 </div>
-                <p>{ele.title === "Rank" ? ele.value : `$${ele.value}`}</p>
+                <p className={styles.text_bold}>
+                  {ele.title === "Rank" ? ele.value : `$${ele.value}`}
+                </p>
               </div>
             ))}
           </div>
@@ -158,10 +187,21 @@ export default function page({ params }: { params: { id: string } }) {
                   />
                   <p>{ele.title}</p>
                 </div>
-                <p>{ele.value}</p>
+                <p className={styles.text_bold}>{ele.value}</p>
               </div>
             ))}
           </div>
+        </div>
+      </div>
+      <div className={styles.stats}>
+        <p className={styles.stats_head}>{coinDetail?.name} Links</p>
+        <div>
+          {coinDetail?.links.map((ele: any, id: number) => (
+            <div key={id} className={`${styles.stats_row} ${styles.coinLinks}`}>
+              <p>{ele.type}</p>
+              <Link href={ele.url}>{ele.name}</Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>
