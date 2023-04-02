@@ -4,7 +4,7 @@
   padding: 2em 4em;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
 }
 .main h2 {
   font-weight: 600;
@@ -15,6 +15,9 @@
   line-height: 3em;
   padding-bottom: 1em;
   border-bottom: 2px solid var(--text-grey);
+}
+.page_head p{
+  opacity: 0.6;
 }
 .drop_down {
   align-self: flex-start;
@@ -72,4 +75,19 @@ color: var(--text-blue);
   align-items: center;
   gap: 0.5em;
   opacity: 0.9;
+}
+
+
+/*         graph             */
+.graph_heading{
+  display: flex;
+  justify-content: space-between;
+}
+.graph_row{
+  display: flex;
+  gap: 1em;
+  font-weight: 600;
+}
+.color_blue{
+  color: var(--text-blue);
 }

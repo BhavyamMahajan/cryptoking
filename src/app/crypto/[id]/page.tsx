@@ -1,31 +1,22 @@
 "use client";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import styles from "./styles.module.css";
-import dollar from "public/icons/pricetousd.svg";
-import rank from "public/icons/rank.svg";
-import volume from "public/icons/vol.svg";
+import Link from "next/link";
 import millify from "millify";
 import Image from "next/image";
-import markets from "public/icons/charts.svg";
+import styles from "./styles.module.css";
+import rank from "public/icons/rank.svg";
+import volume from "public/icons/vol.svg";
+import { useEffect, useState } from "react";
 import exc from "public/icons/exchange.svg";
-import Link from "next/link";
+import markets from "public/icons/charts.svg";
+import dollar from "public/icons/pricetousd.svg";
+import Graph from "./Graph";
 
 export const revalidate = 0;
 const getData = async (id: string) => {
   const coin = await axios({
     method: "GET",
     url: `https://coinranking1.p.rapidapi.com/coin/${id}`,
-    params: {
-      referenceCurrencyUuid: "yhjMzLPhuIDl",
-      timePeriod: "24h",
-      "tiers[0]": "1",
-      orderBy: "marketCap",
-      orderDirection: "desc",
-      limit: "50",
-      offset: "0",
-    },
-
     headers: {
       "X-RapidAPI-Key": "568cc82003msh93b8dcaea65891bp133b39jsn1c6b116a2bb6",
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
@@ -37,17 +28,8 @@ const getData = async (id: string) => {
 const getHistory = async ({id,timePeriod}:{id:string,timePeriod: string}) => {
   const coin = await axios({
     method: "GET",
-    url: `https://coinranking1.p.rapidapi.com/coin/${id}/history/${timePeriod}`,
-    params: {
-      referenceCurrencyUuid: "yhjMzLPhuIDl",
-      timePeriod: "24h",
-      "tiers[0]": "1",
-      orderBy: "marketCap",
-      orderDirection: "desc",
-      limit: "50",
-      offset: "0",
-    },
-
+    url: `https://coinranking1.p.rapidapi.com/coin/${id}/history`,
+    params:{timePeriod:timePeriod},
     headers: {
       "X-RapidAPI-Key": "568cc82003msh93b8dcaea65891bp133b39jsn1c6b116a2bb6",
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
@@ -115,15 +97,15 @@ export default function page({ params }: { params: { id: string } }) {
   ];
 
   useEffect(() => {
-    console.log("first+ " + id);
     async function callApi() {
       const coinDetail = await getData(id);
-      // const coinHistory = await getHistory({id,timePeriod})
+      const coinHistory = await getHistory({id,timePeriod})
       setCoinDetail(coinDetail.data.coin);
       setCoinHistory(coinHistory);
     }
     callApi();
   }, [timePeriod]);
+
   console.log(coinHistory);
 
   return (
@@ -147,6 +129,7 @@ export default function page({ params }: { params: { id: string } }) {
           </option>
         ))}
       </select>
+      <Graph coinHistory={coinHistory} currentPrice={coinDetail?.price} coinName={coinDetail?.name} />
       <div className={styles.stats_container}>
         <div className={styles.stats}>
           <p className={styles.stats_head}>
@@ -199,7 +182,7 @@ export default function page({ params }: { params: { id: string } }) {
           {coinDetail?.links.map((ele: any, id: number) => (
             <div key={id} className={`${styles.stats_row} ${styles.coinLinks}`}>
               <p>{ele.type}</p>
-              <Link href={ele.url}>{ele.name}</Link>
+              <Link href={ele.url} target="_blank">{ele.name}</Link>
             </div>
           ))}
         </div>

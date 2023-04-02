@@ -16,3 +16,9 @@ export type CoinDetail = {
     '24hVolume':string,
     btcPrice:string
 }
+
+export type CoinGraph={
+    coinHistory:any,
+    currentPrice:string,
+    coinName:string
+}
