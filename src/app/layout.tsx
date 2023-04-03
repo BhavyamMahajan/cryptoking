@@ -5,6 +5,7 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   style: "normal",
   subsets: ["latin"],
+  display: "swap",
 });
 export const metadata = {
   title: "Create Next App",

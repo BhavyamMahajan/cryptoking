@@ -1,28 +1,36 @@
 import { CoinGraph } from "@/types/card";
 import { Line } from "react-chartjs-2";
 import styles from "./styles.module.css";
-import {Chart,LinearScale,CategoryScale,PointElement,LineElement,Legend,Tooltip} from "chart.js";
+import {
+  Chart,
+  LinearScale,
+  CategoryScale,
+  PointElement,
+  LineElement,
+  Legend,
+  Tooltip,
+} from "chart.js";
 Chart.register(
-CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Legend,
-    Tooltip
-    )
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Legend,
+  Tooltip
+);
 
 export default function Graph({
   coinHistory,
   currentPrice,
   coinName,
 }: CoinGraph) {
-
   const coinPrice = [String];
   const coinTimest: string[] = [];
 
   coinHistory?.data?.history?.map((ele: any) => {
     coinPrice.push(ele.price);
-    coinTimest.push(new Date(ele.timestamp).toLocaleDateString());
+    console.log(ele.timestamp);
+    coinTimest.push(new Date(Number(ele.timestamp)).toLocaleDateString());
   });
 
   const data = {
@@ -37,7 +45,7 @@ export default function Graph({
       },
     ],
   };
-  const options:any = {
+  const options: any = {
     scales: {
       y: [
         {
@@ -49,22 +57,21 @@ export default function Graph({
     },
   };
 
-  console.log(coinTimest)
+  console.log(coinTimest);
   return (
     <>
-    <div className={styles.graph_heading}>
-      <p className={`${styles.stats_head} ${styles.color_blue}`}>
-        {coinName} Price Chart
-      </p>
-      <div className={styles.graph_row}>
-        <p>{coinHistory?.data?.change}%</p>
-        <p>
-          Current {coinName} Price: ${parseFloat(currentPrice).toFixed(2)}
+      <div className={styles.graph_heading}>
+        <p className={`${styles.stats_head} ${styles.color_blue}`}>
+          {coinName} Price Chart
         </p>
+        <div className={styles.graph_row}>
+          <p>{coinHistory?.data?.change}%</p>
+          <p>
+            Current {coinName} Price: ${parseFloat(currentPrice).toFixed(2)}
+          </p>
+        </div>
       </div>
-    </div>
-    <Line data={data} options={options}/>
+      <Line data={data} options={options} />
     </>
-
   );
 }

@@ -32,8 +32,8 @@ export default async function Page() {
 
   return (
     <div className={styles.crypto_page}>
-      {coins.data.coins.map((ele: CoinDetail) => (
-        <CryptoCard data={ele} />
+      {coins.data.coins.map((ele: CoinDetail, id: number) => (
+        <CryptoCard key={id} data={ele} />
       ))}
     </div>
   );
