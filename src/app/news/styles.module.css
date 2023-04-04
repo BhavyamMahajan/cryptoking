@@ -20,3 +20,9 @@ flex: 1;
   border-color: var(--text-blue);
   box-shadow: 0 0 2px var(--text-blue);
 }
+@media (max-aspect-ratio: 1/1), (max-width: 1150px){
+.cards{
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+}

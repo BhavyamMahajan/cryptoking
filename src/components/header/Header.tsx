@@ -12,7 +12,6 @@ import { usePathname, useRouter } from "next/navigation";
 export default function Header() {
 const path = usePathname();
 
-  // console.log("paramssss : " + path)
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>

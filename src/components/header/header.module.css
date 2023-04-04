@@ -34,7 +34,6 @@
 }
 .nav_items div:hover {
   background-color: var(--text-blue);
-  /* color: #0071bd; */
   transition: 0.2s ease-out;
 }
 .nav_items div a {
@@ -47,4 +46,20 @@
 .icons {
   filter: invert(79%) sepia(0%) saturate(0%) hue-rotate(98deg) brightness(91%)
     contrast(86%);
+}
+@media (max-aspect-ratio: 1/1), (max-width: 900px){
+.navbar{
+  height: unset;
+  width: 100%;
+  padding: 1em;
+}
+.logo{
+  padding: 0;
+}
+.logo img{
+  width: 10%;
+}
+  .nav_items{
+  display: none;
+}
 }

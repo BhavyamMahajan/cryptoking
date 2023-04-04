@@ -24,3 +24,10 @@
   display: flex;
   background-color: var(--primary-color);
 }
+
+@media (max-aspect-ratio: 1/1), (max-width: 900px){
+  .main_body{
+  flex-direction: column;
+}
+
+}
