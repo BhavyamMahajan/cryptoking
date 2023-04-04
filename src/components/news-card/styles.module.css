@@ -34,3 +34,8 @@
     width: 100%;
   }
 }
+@media (max-width: 500px){
+  .news_card{
+    padding: 1em;
+  }
+}

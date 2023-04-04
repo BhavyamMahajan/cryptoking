@@ -26,6 +26,9 @@
 }
 
 @media (max-aspect-ratio: 1/1), (max-width: 900px){
+  html{
+    font-size: 12px;
+  }
   .main_body{
   flex-direction: column;
 }

@@ -16,6 +16,7 @@ export default function NewsCard({ data }: { data: any }) {
           alt="news Image"
           width={100}
           height={100}
+          sizes="responsively"
         />
       </div>
       <p>

@@ -5,3 +5,9 @@
   padding: 2em;
   flex: 1;
 }
+@media (max-aspect-ratio: 1/1), (max-width: 450px){
+.crypto_page{
+ padding: 2em 1em;
+ justify-content: center;
+}
+}

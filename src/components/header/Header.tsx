@@ -18,6 +18,7 @@ const path = usePathname();
         <Image
           src={logo}
           alt="CryptoKing"
+          className={styles.logoImg}
           style={{ width: "15%", height: "auto", objectFit: "contain" }}
         />
         <h2>CryptoKing</h2>
