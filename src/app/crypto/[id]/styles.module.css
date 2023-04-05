@@ -91,3 +91,24 @@ color: var(--text-blue);
 .color_blue{
   color: var(--text-blue);
 }
+
+@media (max-aspect-ratio: 1/1), (max-width: 900px){
+  .main{
+    width: 90%;
+    padding: 2em 0;
+  }
+  .page_head{
+    line-height: normal;
+  }
+  .stats_container{
+    flex-direction: column;
+    gap:2em;
+  }
+  .stats{
+    width: 100%;
+  }
+  .graph_heading{
+    flex-direction: column;
+    align-items: center;
+  }
+}

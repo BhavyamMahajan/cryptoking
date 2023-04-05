@@ -4,12 +4,12 @@ import Link from "next/link";
 import millify from "millify";
 import Image from "next/image";
 import styles from "./styles.module.css";
-import rank from "public/icons/rank.svg";
-import volume from "public/icons/vol.svg";
+import rank from "public/assets/icons/rank.svg";
+import volume from "public/assets/icons/vol.svg";
 import { useEffect, useState } from "react";
-import exc from "public/icons/exchange.svg";
-import markets from "public/icons/charts.svg";
-import dollar from "public/icons/pricetousd.svg";
+import exc from "public/assets/icons/exchange.svg";
+import markets from "public/assets/icons/charts.svg";
+import dollar from "public/assets/icons/pricetousd.svg";
 import Graph from "./Graph";
 
 export const revalidate = 0;
@@ -25,11 +25,17 @@ const getData = async (id: string) => {
   return coin.data as any;
 };
 
-const getHistory = async ({id,timePeriod}:{id:string,timePeriod: string}) => {
+const getHistory = async ({
+  id,
+  timePeriod,
+}: {
+  id: string;
+  timePeriod: string;
+}) => {
   const coin = await axios({
     method: "GET",
     url: `https://coinranking1.p.rapidapi.com/coin/${id}/history`,
-    params:{timePeriod:timePeriod},
+    params: { timePeriod: timePeriod },
     headers: {
       "X-RapidAPI-Key": "568cc82003msh93b8dcaea65891bp133b39jsn1c6b116a2bb6",
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
@@ -44,7 +50,7 @@ export default function page({ params }: { params: { id: string } }) {
   const [coinDetail, setCoinDetail] = useState<any>();
   const [timePeriod, setTimePeriod] = useState<string>("7d");
   const [coinHistory, setCoinHistory] = useState<any>();
-  const time = ["3h", "24h", "7d", "3m", "30d", "1y", "3y", "5y"];
+  const time = ["3h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
   const stats = [
     {
       title: "Price to USD",
@@ -99,7 +105,7 @@ export default function page({ params }: { params: { id: string } }) {
   useEffect(() => {
     async function callApi() {
       const coinDetail = await getData(id);
-      const coinHistory = await getHistory({id,timePeriod})
+      const coinHistory = await getHistory({ id, timePeriod });
       setCoinDetail(coinDetail.data.coin);
       setCoinHistory(coinHistory);
     }
@@ -129,7 +135,11 @@ export default function page({ params }: { params: { id: string } }) {
           </option>
         ))}
       </select>
-      <Graph coinHistory={coinHistory} currentPrice={coinDetail?.price} coinName={coinDetail?.name} />
+      <Graph
+        coinHistory={coinHistory}
+        currentPrice={coinDetail?.price}
+        coinName={coinDetail?.name}
+      />
       <div className={styles.stats_container}>
         <div className={styles.stats}>
           <p className={styles.stats_head}>
@@ -182,7 +192,9 @@ export default function page({ params }: { params: { id: string } }) {
           {coinDetail?.links.map((ele: any, id: number) => (
             <div key={id} className={`${styles.stats_row} ${styles.coinLinks}`}>
               <p>{ele.type}</p>
-              <Link href={ele.url} target="_blank">{ele.name}</Link>
+              <Link href={ele.url} target="_blank">
+                {ele.name}
+              </Link>
             </div>
           ))}
         </div>
