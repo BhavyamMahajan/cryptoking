@@ -20,6 +20,11 @@
   --text-grey: #afaeaf;
   --box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .main_body {
   display: flex;
   background-color: var(--primary-color);

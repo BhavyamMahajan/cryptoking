@@ -9,12 +9,24 @@ import homeIcon from "public/icons/home.svg";
 import logo from "public/assets/brand/cryptocurrency.png";
 import { usePathname, useRouter } from "next/navigation";
 import menu from "public/assets/icons/menu.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const path = usePathname();
   const [show, setShow] = useState(false);
+  const node = useRef<HTMLImageElement>(null);
+  const handleDomClick = (e: any) => {
+    if (e.target.closest(".drop-down-head") !== node.current) setShow(false);
+  };
 
+  useEffect(() => {
+    if (show) {
+      document.addEventListener("click", handleDomClick);
+      return () => {
+        document.removeEventListener("click", handleDomClick);
+      };
+    }
+  });
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
@@ -71,6 +83,7 @@ export default function Header() {
         alt="menu"
         className={styles.mobile_menu}
         onClick={() => setShow(!show)}
+        ref={node}
       />
       {show && (
         <div className={styles.menu_list}>
