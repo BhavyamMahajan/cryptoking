@@ -2,10 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./header.module.css";
-import news from "public/icons/news.svg";
-import graph from "public/icons/charts.svg";
-import exc from "public/icons/exchange.svg";
-import homeIcon from "public/icons/home.svg";
+import news from "public/assets/icons/news.svg";
+import graph from "public/assets/icons/charts.svg";
+import exc from "public/assets/icons/exchange.svg";
+import homeIcon from "public/assets/icons/home.svg";
 import logo from "public/assets/brand/cryptocurrency.png";
 import { usePathname, useRouter } from "next/navigation";
 import menu from "public/assets/icons/menu.svg";
