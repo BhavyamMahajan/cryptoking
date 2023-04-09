@@ -30,7 +30,6 @@ export default function Graph({
 
   coinHistory?.data?.history?.map((ele: any) => {
     coinPrice.push(ele.price);
-    console.log(ele.timestamp);
     coinTimest.push(new Date(Number(ele.timestamp)).toLocaleDateString());
   });
 
@@ -58,7 +57,6 @@ export default function Graph({
     },
   };
 
-  console.log(coinTimest);
   return (
     <>
       <div className={styles.graph_heading}>

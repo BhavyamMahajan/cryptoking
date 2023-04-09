@@ -112,8 +112,6 @@ export default function page({ params }: { params: { id: string } }) {
     callApi();
   }, [timePeriod]);
 
-  console.log(coinHistory);
-
   return (
     <div className={styles.main}>
       <div className={styles.page_head}>

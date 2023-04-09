@@ -4,10 +4,9 @@ import Image from "next/image";
 import styles from "./header.module.css";
 import news from "public/assets/icons/news.svg";
 import graph from "public/assets/icons/charts.svg";
-import exc from "public/assets/icons/exchange.svg";
 import homeIcon from "public/assets/icons/home.svg";
 import logo from "public/assets/brand/cryptocurrency.png";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import menu from "public/assets/icons/menu.svg";
 import { useEffect, useRef, useState } from "react";
 
@@ -59,15 +58,6 @@ export default function Header() {
           />
           <Link href="/cryptocurrencies">Cryptocurrencies</Link>
         </div>
-        <div className={path === "/exchanges" ? styles.nav_item_active : ""}>
-          <Image
-            src={exc}
-            alt="exchange"
-            style={{ width: "10%", height: "auto" }}
-            className={styles.icons}
-          />
-          <Link href="/exchanges">Exchanges</Link>
-        </div>
         <div className={path === "/news" ? styles.nav_item_active : ""}>
           <Image
             src={news}
@@ -89,7 +79,6 @@ export default function Header() {
         <div className={styles.menu_list}>
           <Link href="/">Home</Link>
           <Link href="/cryptocurrencies">Cryptocurrencies</Link>
-          <Link href="/exchanges">Exchanges</Link>
           <Link href="/news">News</Link>
         </div>
       )}

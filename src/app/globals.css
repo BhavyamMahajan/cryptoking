@@ -37,5 +37,10 @@ body{
   .main_body{
   flex-direction: column;
 }
-
+}
+@media (min-width:2000px){
+  body{
+    width:2000px;
+    margin:auto;
+  }
 }
