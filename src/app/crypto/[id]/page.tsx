@@ -44,7 +44,7 @@ const getHistory = async ({
   return coin.data as any;
 };
 
-export default function page({ params }: { params: { id: string } }) {
+export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const [coinDetail, setCoinDetail] = useState<any>();
@@ -110,7 +110,7 @@ export default function page({ params }: { params: { id: string } }) {
       setCoinHistory(coinHistory);
     }
     callApi();
-  }, [timePeriod]);
+  }, [timePeriod, id]);
 
   return (
     <div className={styles.main}>

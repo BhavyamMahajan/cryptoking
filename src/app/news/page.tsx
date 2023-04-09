@@ -41,7 +41,7 @@ const getCoins = async () => {
   return coin.data as any;
 };
 
-export default function page() {
+export default function Page() {
   const [newsData, setNewsData] = useState<any>();
   const [coins, setCoins] = useState<any>();
   const [newsCategory, setNewsCategory] = useState<string>("Cyrptocurrency");
