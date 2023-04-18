@@ -10,6 +10,7 @@ import {
   Legend,
   Tooltip,
 } from "chart.js";
+import moment from "moment";
 
 Chart.register(
   CategoryScale,
@@ -30,7 +31,7 @@ export default function Graph({
 
   coinHistory?.data?.history?.map((ele: any) => {
     coinPrice.push(ele.price);
-    coinTimest.push(new Date(Number(ele.timestamp)).toLocaleDateString());
+    coinTimest.push(moment.unix(ele.timestamp).format("DD/MM/YYYY"));
   });
 
   const data = {
